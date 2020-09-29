@@ -91,6 +91,7 @@ export default class extends Vue {
   border-width: 0;
   border-bottom-width: 1px;
   border-color: white;
+  cursor: pointer;
 
   .main_menu {
     display: flex;

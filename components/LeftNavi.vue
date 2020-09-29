@@ -4,7 +4,7 @@
     <div v-if="!this.resizeMenu" style="align-self: center; height: 50px; color: white;font-size: 30px;font-weight: bold;">
       SG.Object
     </div>
-    <fa :icon="['fas', 'bars']" style="color: white; font-size: x-large;" @click="test" />
+    <fa :icon="['fas', 'bars']" style="color: white; font-size: x-large;cursor: pointer;" @click="test" />
   </div>
   <NaviMenu v-for='menu in getMenus' :key='menu.url' :navi-menu='menu' :active-menu='activeMenu' :is-resize="isResize" />
 </div>
