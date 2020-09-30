@@ -13,7 +13,7 @@
           {{ subMenu.name }}
         </nuxt-link>
       </div>
-    </div>      
+    </div>
   </div>
 </template>
 
@@ -77,14 +77,8 @@ export default class extends Vue {
 
 
 .menu_area {
-  //height: 45px;
-  //padding-left: 10px;
-  //padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
-  //align-items: center;
+  padding: 15px 0px;
+  margin: 0px 10px;
   display: flex;
   flex-direction: column;
   border-style: solid;
@@ -97,7 +91,7 @@ export default class extends Vue {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;  
+    align-items: center;
     width: 100%;
     height: 100%;
 

@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <LeftNavi />
-    <div style="border: 1px solid;width: 100%;">
+    <div class="content" style="border: 1px solid;width: 100%;">
       <Header />
-      <Nuxt />
+      <Nuxt style="border: 1px solid;flex: 1" />
       <Bottom />
     </div>
   </div>
@@ -66,8 +66,14 @@ html {
 }
 
 .main {
-  height: 100%;
   display: flex;
   flex-direction: row;
+}
+
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
