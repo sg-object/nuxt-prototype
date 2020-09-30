@@ -31,10 +31,10 @@ const icon_up = 'chevron-up';
 const icon_down = 'chevron-down';
 
 const menu_icon = {
-  user1: 'user',
+  user1: 'users',
   user2: 'handshake',
   user3: 'shipping-fast',
-  user4: 'wrench'
+  user4: 'cogs'
 }
 
 @Component
