@@ -1,7 +1,7 @@
 <template>
-  <div class="menu_area" >
-    <div v-if="!isResize" class="main_menu" @click="activeMenu(naviMenu.url)">
-      <div class="menu_text">
+  <div class="menu-area" >
+    <div v-if="!isResize" class="main-menu" @click="activeMenu(naviMenu.url)">
+      <div class="menu-text">
         {{ naviMenu.name }}
       </div>
       <fa :icon="['fas', iconType]" style="color: white;" />
@@ -27,20 +27,25 @@ interface NaviMenu{
   sub: NaviMenu[];
 }
 
-const icon_up = 'chevron-up';
-const icon_down = 'chevron-down';
+const upIcon = 'chevron-up';
+const downIcon = 'chevron-down';
 
-const menu_icon = {
+type IconType = {
+  [key: string]: string | undefined;
+}
+
+const menuIcon: IconType = {
   user1: 'users',
   user2: 'handshake',
   user3: 'shipping-fast',
-  user4: 'cogs'
+  user4: 'cogs',
+  default: 'question'
 }
 
 @Component
 export default class extends Vue {
   @Prop({ required: true }) readonly naviMenu!: NaviMenu;
-  iconType: string = icon_down;
+  iconType: string = downIcon;
   actived: boolean = false;
 
   @Prop({ required: true }) activeMenu!: Function;
@@ -52,14 +57,13 @@ export default class extends Vue {
 
   get isActived(): boolean{
     console.log(this.naviMenu);
-    this.iconType = this.naviMenu.actived ? icon_up : icon_down
+    this.iconType = this.naviMenu.actived ? upIcon : downIcon;
     return this.naviMenu.actived;
   }
 
-  get menuIconType(): string{
-    let icon = menu_icon[this.naviMenu.url.substring(1)];
-    console.log(icon);
-    return icon;
+  get menuIconType(): string | undefined{
+    const icon = menuIcon[this.naviMenu.url.substring(1)];
+    return icon !== undefined ? icon : menuIcon['default'];
   }
 }
 
@@ -76,7 +80,7 @@ export default class extends Vue {
 .page-enter,
 
 
-.menu_area {
+.menu-area {
   padding: 15px 0px;
   margin: 0px 10px;
   display: flex;
@@ -87,7 +91,7 @@ export default class extends Vue {
   border-color: white;
   cursor: pointer;
 
-  .main_menu {
+  .main-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -95,7 +99,7 @@ export default class extends Vue {
     width: 100%;
     height: 100%;
 
-    .menu_text {
+    .menu-text {
       //font-weight: bold;
       font-size: 14px;
       color: white;

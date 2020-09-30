@@ -1,6 +1,6 @@
 <template>
-<div class="navi_area" :style="naviAreaClass">
-  <div class="navi_header" :style="{'justify-content': headerStyle}">
+<div class="navi-area" :style="naviAreaClass">
+  <div class="navi-header" :style="{'justify-content': headerStyle}">
     <div v-if="!this.resizeMenu" style="align-self: center; height: 50px; color: white;font-size: 30px;font-weight: bold;">
       SG.Object
     </div>
@@ -83,7 +83,7 @@ export default class extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.navi_area {
+.navi-area {
   width: 10%;
   max-width: 250px;
   //min-width: 230px;
@@ -92,7 +92,7 @@ export default class extends Vue {
   display: flex;
   flex-direction: column;
 
-  .navi_header {
+  .navi-header {
     display: flex; 
     flex-direction: row;
     justify-content: space-between;
