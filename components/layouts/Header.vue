@@ -1,12 +1,23 @@
 <template>
   <div class="header">
     <div>홍길동</div>
-    <div class="logout text">
+    <div class="logout text" @click="logout">
       <fa :icon="['fas', 'sign-out-alt']" style="color: black;" />
       로그아웃
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  methods: {
+    logout() {
+      this.$auth.logout();
+    }
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 .header {

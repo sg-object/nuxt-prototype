@@ -18,6 +18,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    //'~/plugins/axios'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -31,6 +32,9 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
+    '@nuxtjs/auth',
     ['nuxt-fontawesome', {
       component: 'fa',
       imports: [{
@@ -41,8 +45,58 @@ export default {
           icons: ['fab']
           },
       ]
-   }]
+    }]
   ],
+
+  router: {
+    middleware: ['auth']
+  },
+
+  axios: {
+    baseURL: '/api',
+    credentials: true,
+    retry: false,
+    requestInterceptor: (config, {stroe}) => {
+      config.headers.common['Content-Type'] = 'application/json'
+      return config
+    }
+  },
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: false,
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', headers: {'Content-Type': 'application/json'}, propertyName: 'token' },
+          logout: false,
+          user: false
+        },
+        tokenName: 'jwt-token',
+        tokenType: false
+      }
+    },
+    token: {
+      prefix: 'token.'
+    },
+    localStorage: false,
+    //cookie: false
+
+    plugins: [ '~/plugins/axios' ]
+  },
+
+  proxy: {
+    '/api': {
+      target: 'http://192.168.1.235:8081',
+      pathRewrite: {
+        '^/api' : '/'
+      }
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

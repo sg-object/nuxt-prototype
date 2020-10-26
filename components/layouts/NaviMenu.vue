@@ -7,12 +7,10 @@
       <fa :icon="['fas', iconType]" style="color: white;" />
     </div>
     <fa v-else :title="naviMenu.name" :icon="['fas', menuIconType]" style="color: white; font-size: x-large; align-self: center;" @click="activeMenu(naviMenu.url)" />
-    <div v-if="isActived">
-      <div v-for='subMenu in naviMenu.sub' :key="subMenu.url">
-        <nuxt-link :to='subMenu.url'>
-          {{ subMenu.name }}
-        </nuxt-link>
-      </div>
+    <div v-if="isActived" class="sub-menu-area">
+      <nuxt-link v-for='subMenu in naviMenu.sub' :key="subMenu.url" :to='subMenu.url' class="sub-menu-text">
+        {{ subMenu.name }}
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -35,10 +33,10 @@ type IconType = {
 }
 
 const menuIcon: IconType = {
-  user1: 'users',
-  user2: 'handshake',
-  user3: 'shipping-fast',
-  user4: 'cogs',
+  user: 'users',
+  partner: 'handshake',
+  pro: 'shipping-fast',
+  setting: 'cogs',
   default: 'question'
 }
 
@@ -52,11 +50,11 @@ export default class extends Vue {
   @Prop({ required: true }) isResize!: Function;
 
   mounted(){
+    this.naviMenu.actived = false
     console.log('mounted!!! : ');
   }
 
   get isActived(): boolean{
-    console.log(this.naviMenu);
     this.iconType = this.naviMenu.actived ? upIcon : downIcon;
     return this.naviMenu.actived;
   }
@@ -69,6 +67,13 @@ export default class extends Vue {
 
 </script>
 <style lang="scss" scoped>
+$border-radius: 5px;
+$font-size: 13px;
+
+a:hover {
+  background-color: #eaecf4;
+}
+
 .page-enter-active {
   transition: opacity 0.3s ease-out;
 }
@@ -101,8 +106,25 @@ export default class extends Vue {
 
     .menu-text {
       //font-weight: bold;
-      font-size: 14px;
+      font-size: $font-size;
       color: white;
+    }
+  }
+
+  .sub-menu-area {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: $border-radius;
+    padding: 10px;
+    margin-top: 10px;
+
+    .sub-menu-text {
+      color: black;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: $border-radius;
+      font-size: $font-size;
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
 <div class="navi-area" :style="naviAreaClass">
   <div class="navi-header" :style="{'justify-content': headerStyle}">
-    <div v-if="!this.resizeMenu" style="align-self: center; height: 50px; color: white;font-size: 30px;font-weight: bold;">
+    <div v-if="!this.resizeMenu" style="align-self: center; height: 50px; color: white;font-size: 30px;font-weight: bold; margin-right: 10px">
       SG.Object
     </div>
     <fa :icon="['fas', 'bars']" style="color: white; font-size: x-large;cursor: pointer;" @click="test" />
@@ -11,24 +11,26 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
+import menuData from '@/assets/jsons/menus.json';
 
 @Component
 export default class extends Vue {
-  menus = [
+  /* menus = [
       {name: '회원 관리', url: '/user1', actived: false, sub: [{name: '메뉴1', url: '/user'}]},
       {name: '파트너스 관리', url: '/user2', actived: false, sub: [{name: '메뉴1', url: '/usera'}]},
       {name: '작업 신청 관리', url: '/user3', actived: false, sub: [{name: '메뉴1', url: '/users'}]},
       {name: '설정', url: '/user4', actived: false, sub: [{name: '메뉴1', url: '/userd'}]}
-      ];
-
+      ]; */
+  menus = menuData;
   currentUrl: string = '';
   resizeMenu: boolean = false;
 
   activeMenu(url: string){
     for(let i=0;i<this.menus.length;i++){
       let menu = this.menus[i];
+      //menu.actived = false;
       if(url == menu.url){
         menu.actived = !menu.actived;
         this.resizeMenu = false
@@ -51,12 +53,11 @@ export default class extends Vue {
   }
 
   mounted(){
-    this.menus.forEach(function(menu){
+    /* this.menus.forEach(function(menu){
       for(var i=2;i<=5;i++){
         menu.sub.push({name: '메뉴'+i, url: '/userasd'+i});
       }
-    });
-    console.log();
+    }); */
   }
 
   get getMenus(): Array<object>{
@@ -86,7 +87,7 @@ export default class extends Vue {
 .navi-area {
   width: 10%;
   max-width: 250px;
-  //min-width: 230px;
+  //min-width: 200px;
   //background-color: #6799FF;
   background-color:#4e73df;
   display: flex;
