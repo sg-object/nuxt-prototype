@@ -1,17 +1,29 @@
 <template>
-  <div class="menu-area" >
-    <div v-if="!isResize" class="main-menu" @click="activeMenu(naviMenu.url)">
-      <div class="menu-text">
-        {{ naviMenu.name }}
+  <div>
+    <div class="menu-area">
+      <div v-if="!isResize" class="main-menu" @click="activeMenu(naviMenu.url)">
+        <div class="menu-text">
+          {{ naviMenu.name }}
+        </div>
+        <fa :icon="['fas', iconType]" style="color: white;" />
       </div>
-      <fa :icon="['fas', iconType]" style="color: white;" />
+      <fa v-else :title="naviMenu.name" :icon="['fas', menuIconType]" style="color: white; font-size: x-large; align-self: center;" @click="activeMenu(naviMenu.url)" />
     </div>
-    <fa v-else :title="naviMenu.name" :icon="['fas', menuIconType]" style="color: white; font-size: x-large; align-self: center;" @click="activeMenu(naviMenu.url)" />
-    <div v-if="isActived" class="sub-menu-area">
+    <!-- <div v-if="isActived" class="sub-menu-area">
       <nuxt-link v-for='subMenu in naviMenu.sub' :key="subMenu.url" :to='subMenu.url' class="sub-menu-text">
         {{ subMenu.name }}
       </nuxt-link>
-    </div>
+    </div> -->
+    <transition name="slide">
+      <div v-if="isActived">
+        <div class="sub-menu-area">
+          <nuxt-link v-for='subMenu in naviMenu.sub' :key="subMenu.url" :to='subMenu.url' class="sub-menu-text">
+            {{ subMenu.name }}
+          </nuxt-link>
+        </div>
+      </div>
+    </transition>
+    <div class="under-line" />
   </div>
 </template>
 
@@ -84,16 +96,47 @@ a:hover {
  
 .page-enter,
 
+.slide-enter-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+   -moz-transition-duration: 0.3s;
+   -webkit-transition-duration: 0.3s;
+   -o-transition-duration: 0.3s;
+   transition-duration: 0.3s;
+   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 100px;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 0;
+}
 
 .menu-area {
-  padding: 15px 0px;
-  margin: 0px 10px;
+  //padding: 15px 0px;
+  margin: 15px 10px;
   display: flex;
   flex-direction: column;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 0;
   border-bottom-width: 1px;
-  border-color: white;
+  border-color: white; */
   cursor: pointer;
 
   .main-menu {
@@ -111,21 +154,32 @@ a:hover {
     }
   }
 
-  .sub-menu-area {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: $border-radius;
-    padding: 10px;
-    margin-top: 10px;
+  
+}
 
-    .sub-menu-text {
-      color: black;
-      text-decoration: none;
-      padding: 10px;
-      border-radius: $border-radius;
-      font-size: $font-size;
-    }
+.sub-menu-area {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: $border-radius;
+  margin: 0px 10px 15px;
+  padding: 10px 0px;
+
+  .sub-menu-text {
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0px 10px;
+    border-radius: $border-radius;
+    font-size: $font-size;
   }
+}
+
+.under-line {
+  margin: 0px 10px;
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-color: white;
 }
 </style>

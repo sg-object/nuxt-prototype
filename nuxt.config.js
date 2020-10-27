@@ -80,9 +80,9 @@ export default {
         tokenType: false
       }
     },
-    token: {
+    /* token: {
       prefix: 'token.'
-    },
+    }, */
     localStorage: false,
     //cookie: false
 
