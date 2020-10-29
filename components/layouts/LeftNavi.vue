@@ -1,19 +1,39 @@
 <template>
-<div class="navi-area" :style="naviAreaClass">
-  <div class="navi-header" :style="{'justify-content': headerStyle}">
-    <div v-if="!this.resizeMenu" style="align-self: center; height: 50px; color: white;font-size: 30px;font-weight: bold; margin-right: 10px">
-      SG.Object
+  <div class="navi-area" :style="naviAreaClass">
+    <div class="navi-header" :style="{ 'justify-content': headerStyle }">
+      <div
+        v-if="!resizeMenu"
+        style="
+          align-self: center;
+          height: 50px;
+          color: white;
+          font-size: 30px;
+          font-weight: bold;
+          margin-right: 10px;
+        "
+      >
+        SG.Object
+      </div>
+      <fa
+        :icon="['fas', 'bars']"
+        style="color: white; font-size: x-large; cursor: pointer"
+        @click="test"
+      />
     </div>
-    <fa :icon="['fas', 'bars']" style="color: white; font-size: x-large;cursor: pointer;" @click="test" />
+    <NaviMenu
+      v-for="menu in getMenus"
+      :key="menu.url"
+      :navi-menu="menu"
+      :active-menu="activeMenu"
+      :is-resize="isResize"
+    />
   </div>
-  <NaviMenu v-for='menu in getMenus' :key='menu.url' :navi-menu='menu' :active-menu='activeMenu' :is-resize="isResize" />
-</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
+import { Component, Vue } from "nuxt-property-decorator"
 
-import menuData from '@/assets/jsons/menus.json';
+import menuData from "@/assets/jsons/menus.json"
 
 @Component
 export default class extends Vue {
@@ -23,19 +43,19 @@ export default class extends Vue {
       {name: '작업 신청 관리', url: '/user3', actived: false, sub: [{name: '메뉴1', url: '/users'}]},
       {name: '설정', url: '/user4', actived: false, sub: [{name: '메뉴1', url: '/userd'}]}
       ]; */
-  menus = menuData;
-  currentUrl: string = '';
-  resizeMenu: boolean = false;
+  menus = menuData
+  currentUrl: string = ""
+  resizeMenu: boolean = false
 
-  activeMenu(url: string){
-    for(let i=0;i<this.menus.length;i++){
-      let menu = this.menus[i];
-      //menu.actived = false;
-      if(url == menu.url){
-        menu.actived = !menu.actived;
+  activeMenu(url: string) {
+    for (let i = 0; i < this.menus.length; i++) {
+      const menu = this.menus[i]
+      // menu.actived = false;
+      if (url === menu.url) {
+        menu.actived = !menu.actived
         this.resizeMenu = false
-      }else{
-        menu.actived = false;
+      } else {
+        menu.actived = false
       }
     }
     /* this.menus.forEach(function(menu){
@@ -47,12 +67,12 @@ export default class extends Vue {
     }); */
   }
 
-  test(){
-    this.resizeMenu = !this.resizeMenu;
-    this.activeMenu('@@@@');
+  test() {
+    this.resizeMenu = !this.resizeMenu
+    this.activeMenu("@@@@")
   }
 
-  mounted(){
+  mounted() {
     /* this.menus.forEach(function(menu){
       for(var i=2;i<=5;i++){
         menu.sub.push({name: '메뉴'+i, url: '/userasd'+i});
@@ -60,27 +80,26 @@ export default class extends Vue {
     }); */
   }
 
-  get getMenus(): Array<object>{
-    return this.menus;
+  get getMenus(): Array<object> {
+    return this.menus
   }
 
-  get naviAreaClass(): object{
-    return this.resizeMenu ? {width: '50px'} : {width: '100%'};
+  get naviAreaClass(): object {
+    return this.resizeMenu ? { width: "50px" } : { width: "100%" }
   }
 
-  get isResize(): boolean{
-    return this.resizeMenu;
+  get isResize(): boolean {
+    return this.resizeMenu
   }
 
-  get headerStyle(): string{
-    if(this.resizeMenu){
-      return 'center';
-    }else{
-      return 'space-between';
+  get headerStyle(): string {
+    if (this.resizeMenu) {
+      return "center"
+    } else {
+      return "space-between"
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -89,12 +108,12 @@ export default class extends Vue {
   max-width: 250px;
   //min-width: 200px;
   //background-color: #6799FF;
-  background-color:#4e73df;
+  background-color: #4e73df;
   display: flex;
   flex-direction: column;
 
   .navi-header {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 10px;

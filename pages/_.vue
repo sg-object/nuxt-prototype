@@ -1,13 +1,11 @@
 <template>
-  <div>
-    Not Found!!!!!
-  </div>
+  <div>Not Found!!!!!</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue"
 
 export default Vue.extend({
-  //layout: 'temp'
+  // layout: 'temp'
 })
 </script>

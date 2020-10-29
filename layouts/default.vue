@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <LeftNavi />
-    <div class="content" style="border: 1px solid;width: 100%;">
+    <div class="content" style="border: 1px solid; width: 100%">
       <Header />
-      <Nuxt style="border: 1px solid;flex: 1" />
+      <Nuxt style="border: 1px solid; flex: 1" />
       <Bottom />
     </div>
   </div>
@@ -11,15 +11,8 @@
 
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

@@ -75,3 +75,13 @@
     namespace 충돌이 난다. 따라서, namespace를 구분하기 위해 types.js로 각 속성의 이름들을 빼고 각 컴포넌트에 import 하여
     사용하는 방법과 modules라는 폴더를 만들어 각 단위별로 파일을 쪼개서 관리하는 방법도 있다.
     ※ types.js - action, mutation, getter 호출시 사용하는 name (key)를 상수로 관리하는 파일
+
+
+
+## ESLint
+  소스코드를 분석해서 문법 에러, 버그를 찾고 보고해주는 도구
+  VSCode Extentions에서 ESLint 설치
+
+## Prettier
+  코드 한 줄의 최대 길이나, 탭의 길이, 따옴표 사용 등 코딩 스타일을 일괄적으로 통일하는 도구.
+  VSCode Extentions에서 Prettier Code formatter 설치

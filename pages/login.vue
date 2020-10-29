@@ -3,13 +3,25 @@
     <div class="content">
       <div class="login-box">
         <div class="title">
-          <div style="font-size: xxx-large; font-weight: bold; color: #4e73df;">
+          <div style="font-size: xxx-large; font-weight: bold; color: #4e73df">
             sg.object
           </div>
         </div>
         <div class="form">
-          <input type="text" name="id" v-model="id" placeholder="아이디" maxlength="50" />
-          <input type="password" name="password" v-model="password" placeholder="비밀번호" maxlength="30" />
+          <input
+            v-model="id"
+            type="text"
+            name="id"
+            placeholder="아이디"
+            maxlength="50"
+          />
+          <input
+            v-model="password"
+            type="password"
+            name="password"
+            placeholder="비밀번호"
+            maxlength="30"
+          />
           <button type="button" @click="login">로그인</button>
         </div>
       </div>
@@ -18,36 +30,36 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { isEmail, isPassword, isBlank } from '@/components/utils/Validator'
+import Vue from "vue"
+import { isEmail, isPassword, isBlank } from "@/components/utils/Validator"
 
 export default Vue.extend({
-  layout: 'temp',
-  data: function(){
+  layout: "temp",
+  data() {
     return {
-      id: 'a@a.co',
-      password: 'Aa123456!'
-      
+      id: "a@a.co",
+      password: "Aa123456!",
     }
   },
   methods: {
-    async login(){
-      if(!isEmail(this.id)){
-        alert('유효한 아이디가 아닙니다.');
-      }else if(isBlank(this.password)){
-        alert('유효한 비밀번호가 아닙니다.');
-      }else{
-        await this.$auth.loginWith('local', {
+    async login() {
+      isPassword("")
+      if (!isEmail(this.id)) {
+        alert("유효한 아이디가 아닙니다.")
+      } else if (isBlank(this.password)) {
+        alert("유효한 비밀번호가 아닙니다.")
+      } else {
+        await this.$auth.loginWith("local", {
           data: {
             loginId: this.id,
             password: this.password,
-            autoLogin: false
-          }
+            autoLogin: false,
+          },
         })
-        //this.$router.push('/user');
+        // this.$router.push('/user');
       }
-    }
-  }
+    },
+  },
 })
 </script>
 
