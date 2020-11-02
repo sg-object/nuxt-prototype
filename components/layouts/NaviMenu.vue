@@ -20,13 +20,17 @@
         {{ subMenu.name }}
       </nuxt-link>
     </div> -->
+    <!-- <nuxt-link :to="{ name: 'user', params: { userId: 123 }}">User</nuxt-link>
+    <nuxt-link :to="{ path: 'register', query: { plan: 'private' }}">Register</nuxt-link> -->
     <transition name="slide">
       <div v-if="isActived">
         <div class="sub-menu-area">
           <nuxt-link
             v-for="subMenu in naviMenu.sub"
             :key="subMenu.url"
-            :to="subMenu.url"
+            :to="{
+              path: subMenu.url,
+            }"
             class="sub-menu-text"
           >
             {{ subMenu.name }}
@@ -56,7 +60,7 @@ type IconType = {
 }
 
 const menuIcon: IconType = {
-  user: "users",
+  users: "users",
   partner: "handshake",
   pro: "shipping-fast",
   setting: "cogs",

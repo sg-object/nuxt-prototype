@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="_container">
     <div class="content">
       <div class="login-box">
         <div class="title">
@@ -23,6 +23,7 @@
             maxlength="30"
           />
           <button type="button" @click="login">로그인</button>
+          <button type="button" @click="goJoin">회원가입</button>
         </div>
       </div>
     </div>
@@ -59,13 +60,16 @@ export default Vue.extend({
         // this.$router.push('/user');
       }
     },
+    goJoin() {
+      console.log("join!!!")
+      this.$router.push("/join")
+    },
   },
 })
 </script>
 
 <style lang="scss" scoped>
-@import "~assets/styles/global";
-
+//@import "@/assets/scss/test.scss";
 $radius: 20px;
 $height: 40px;
 
@@ -90,12 +94,9 @@ button {
   border-style: none;
 }
 
-.container {
-  display: flex;
+._container {
+  @include temp-background;
   height: 100vh;
-  background-color: map-get($map: $colors, $key: point);
-  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-  justify-content: center;
 
   .content {
     display: flex;

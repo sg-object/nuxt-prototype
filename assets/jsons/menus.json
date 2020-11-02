@@ -1,5 +1,5 @@
 [
-  {"name": "회원 관리", "url": "/user", "actived": false, "sub": [{"name": "메뉴1", "url": "/user"}, {"name": "메뉴2", "url": "/usr"}]},
+  {"name": "회원 관리", "url": "/users", "actived": false, "sub": [{"name": "메뉴1", "url": "/users"}, {"name": "메뉴2", "url": "/usr"}]},
   {"name": "파트너스 관리", "url": "/partner", "actived": false, "sub": [{"name": "메뉴1", "url": "/user"}]},
   {"name": "작업 신청 관리", "url": "/pro", "actived": false, "sub": [{"name": "메뉴1", "url": "/user"}]},
   {"name": "설정", "url": "/setting", "actived": false, "sub": [{"name": "메뉴1", "url": "/user"}]}

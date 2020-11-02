@@ -12,7 +12,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ["@/assets/scss/main.scss"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -46,7 +46,19 @@ export default {
         ],
       },
     ],
+    "bootstrap-vue/nuxt",
+    "@nuxtjs/style-resources",
+    "nuxt-vue-multiselect",
   ],
+
+  bootstrapVue: {
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
+  },
+
+  styleResources: {
+    scss: ["~/assets/scss/variables.scss"],
+  },
 
   router: {
     middleware: ["auth"],

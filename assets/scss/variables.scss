@@ -1,0 +1,12 @@
+$colors: (
+  main: #4e73df,
+  point: #4e73df
+);
+
+@mixin temp-background {
+  display: flex;
+  //height: 100vh;
+  background-color: map-get($map: $colors, $key: point);
+  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  justify-content: center;
+}
